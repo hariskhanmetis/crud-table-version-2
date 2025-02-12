@@ -1,0 +1,22 @@
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Department</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let department of departments">
+                <td>{{ department.name }}</td>
+                <td>
+                    <button class="view-users" (click)="viewUsers(department.name)">View Details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="showChildTable === true">
+    <app-childtable [users]="selectedUsers"></app-childtable>
+</div>

@@ -1,0 +1,24 @@
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>City</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.position }}</td>
+                <td>{{ user.city }}</td>
+                <td>
+                    <button class="edit-user" (click)="onEdit(user)" [routerLink]="['/edituser', user.id]">Edit User</button>
+                    <button class="delete-user" (click)="onDelete(user.id, user.department)">Delete User</button>    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="add-user" [routerLink]="['/adduser']" id="addUserBtn">Add New User</button>
+</div>

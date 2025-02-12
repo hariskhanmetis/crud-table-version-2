@@ -3,14 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ParenttableComponent } from './parenttable/parenttable.component';
+import { ChildtableComponent } from './childtable/childtable.component';
+import { AdduserComponent } from './adduser/adduser.component';
+import { EdituserComponent } from './edituser/edituser.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ParenttableComponent,
+    ChildtableComponent,
+    AdduserComponent,
+    EdituserComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
