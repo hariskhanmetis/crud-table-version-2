@@ -1,7 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { UserService } from '../services/user.service';
 import { User } from '../models/user.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-childtable',
@@ -13,19 +11,15 @@ export class ChildtableComponent {
   @Output() editUser = new EventEmitter<User>();
   @Output() deleteUser = new EventEmitter<number>();
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor() { }
 
-  onDelete(id: number, department: string) {
-    this.userService.deleteUser(id);
-    this.users = this.userService.getUsersByDepartment(department);
+  onDelete(id: number) {
     this.deleteUser.emit(id);
-    console.log("Event Emitter Sent!");
+    console.log("Event Emitter Sent... User Deleted!");
   }
 
   onEdit(user: User) {
-    this.userService.updateUser(user);
     this.editUser.emit(user); 
-    console.log("Event Emitter Sent!");
-    this.router.navigate(['/edituser', user.id]);
+    console.log("Event Emitter Sent... User is being edited!");
   }
 }

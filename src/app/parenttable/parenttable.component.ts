@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
@@ -15,8 +15,8 @@ export class ParenttableComponent implements OnInit {
   ];
 
   selectedUsers: User[] = [];
-  selectedDepartment: string = '';
   showChildTable: boolean = false;
+  user!: User;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -28,19 +28,15 @@ export class ParenttableComponent implements OnInit {
   viewUsers(department: string) {
     this.showChildTable = true;
     this.selectedUsers = [...this.userService.getUsersByDepartment(department)];
-    this.selectedDepartment = department;
-    console.log("Selected Users:", this.selectedUsers);
+    console.log("Displaying all users of the selected department:", this.selectedUsers);
   }
 
-  navigateToAddUser() {
-    this.router.navigate(['/adduser']);
+  deleteEvent(id: number) {
+    this.userService.deleteUser(id); 
+    this.selectedUsers = this.selectedUsers.filter(user => user.id !== id);
   }
-
-  deleteEvent() {
-    console.log("Event Emitter Recieved!")
-  }
-
-  editEvent() {
-    console.log("Event Emitter Recieved!")
-  }
+  
+  editEvent(user: User) {
+    this.router.navigate(['/edituser', user.id]);
+  }  
 }

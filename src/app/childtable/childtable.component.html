@@ -14,8 +14,8 @@
                 <td>{{ user.position }}</td>
                 <td>{{ user.city }}</td>
                 <td>
-                    <button class="edit-user" (click)="onEdit(user)" [routerLink]="['/edituser', user.id]">Edit User</button>
-                    <button class="delete-user" (click)="onDelete(user.id, user.department)">Delete User</button>    
+                    <button class="edit-user" (click)="onEdit(user)">Edit User</button>
+                    <button class="delete-user" (click)="onDelete(user.id)">Delete User</button>    
                 </td>
             </tr>
         </tbody>

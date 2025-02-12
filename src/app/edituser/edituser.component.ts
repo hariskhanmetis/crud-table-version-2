@@ -26,6 +26,7 @@ export class EdituserComponent implements OnInit {
     if (this.user) {
       this.userService.updateUser(this.user);
       this.router.navigate(['/']);
+      console.log("User has been edited!");
     }
   }
 }

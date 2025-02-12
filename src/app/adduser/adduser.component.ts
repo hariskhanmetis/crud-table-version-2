@@ -15,6 +15,7 @@ export class AdduserComponent {
 
   addUser() {
     this.userService.addUser(this.user);
+    console.log("New user has been added!");
     this.router.navigate(['/']);
   }
 }

@@ -18,5 +18,5 @@
 </div>
 
 <div *ngIf="showChildTable === true">
-    <app-childtable [users]="selectedUsers"></app-childtable>
+    <app-childtable [users]="selectedUsers" (editUser)="editEvent($event)" (deleteUser)="deleteEvent($event)"></app-childtable>
 </div>
