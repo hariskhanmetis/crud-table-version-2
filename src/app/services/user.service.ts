@@ -5,13 +5,15 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private users: User[] = [
-    { id: 1, name: 'Alice', position: 'Frontend Dev', city: 'New York', department: 'Frontend' },
-    { id: 2, name: 'Bob', position: 'Frontend Dev', city: 'San Francisco', department: 'Frontend' },
-    { id: 3, name: 'Charlie', position: 'Backend Dev', city: 'Chicago', department: 'Backend' },
-    { id: 4, name: 'David', position: 'Backend Dev', city: 'Austin', department: 'Backend' }
-  ];
-  constructor() { }
+  private users: User[] = [];
+  constructor() {
+    this.users = [
+      { id: 1, name: 'Alice', position: 'Frontend Dev', city: 'New York', department: 'Frontend' },
+      { id: 2, name: 'Bob', position: 'Frontend Dev', city: 'San Francisco', department: 'Frontend' },
+      { id: 3, name: 'Charlie', position: 'Backend Dev', city: 'Chicago', department: 'Backend' },
+      { id: 4, name: 'David', position: 'Backend Dev', city: 'Austin', department: 'Backend' }
+    ];
+  }
 
   getUsersByDepartment(department: string): User[] {
     const filteredUsers = this.users.filter(user => user.department === department);
