@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
 @Component({
   selector: 'app-edituser',
   templateUrl: './edituser.component.html',
-  styleUrls: ['./edituser.component.css']
+  styleUrls: ['./edituser.component.css'],
 })
 export class EdituserComponent implements OnInit {
   userForm!: FormGroup;
@@ -17,7 +17,7 @@ export class EdituserComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userId = Number(this.route.snapshot.paramMap.get('id'));
@@ -27,7 +27,7 @@ export class EdituserComponent implements OnInit {
       name: new FormControl(user?.name, Validators.required),
       position: new FormControl(user?.position, Validators.required),
       city: new FormControl(user?.city, Validators.required),
-      department: new FormControl(user?.department, Validators.required)
+      department: new FormControl(user?.department, Validators.required),
     });
   }
 
@@ -36,7 +36,7 @@ export class EdituserComponent implements OnInit {
       const updatedUser: User = { id: this.userId, ...this.userForm.value };
       this.userService.updateUser(updatedUser);
       this.router.navigate(['/']);
-      console.log("User has been edited!");
+      console.log('User has been edited!');
     }
   }
 }
