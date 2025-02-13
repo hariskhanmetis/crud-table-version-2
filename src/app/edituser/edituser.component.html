@@ -1,18 +1,18 @@
-<div class="form-container" *ngIf="user">
+<div class="form-container" *ngIf="userForm">
     <h2>Edit Information</h2>
-    <form (ngSubmit)="editUser()">
+    <form [formGroup]="userForm" (ngSubmit)="editUser()">
         <label for="name">Name</label>
-        <input type="text" [(ngModel)]="user.name" name="name" id="name" required>
+        <input type="text" formControlName="name" id="name" required>
 
         <label for="position">Position</label>
-        <input type="text" [(ngModel)]="user.position" name="position" id="position" required>
+        <input type="text" formControlName="position" id="position" required>
 
         <label for="city">City</label>
-        <input type="text" [(ngModel)]="user.city" name="city" id="city" required>
+        <input type="text" formControlName="city" id="city" required>
 
-        <label for="city">Department</label>
-        <input type="text" [(ngModel)]="user.department" name="department" id="department" required>
+        <label for="department">Department</label>
+        <input type="text" formControlName="department" id="department" required>
 
-        <button type="submit">Update</button>
+        <button type="submit" [disabled]="userForm.invalid">Update</button>
     </form>
 </div>

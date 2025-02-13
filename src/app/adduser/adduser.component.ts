@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../models/user.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -9,13 +9,22 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./adduser.component.css']
 })
 export class AdduserComponent {
-  user: User = { id: 0, name: '', position: '', city: '', department: '' };
+  userForm: FormGroup;
 
-  constructor (private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {
+    this.userForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      position: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      department: new FormControl('', Validators.required)
+    });
+  }
 
   addUser() {
-    this.userService.addUser(this.user);
-    console.log("New user has been added!");
-    this.router.navigate(['/']);
+    if(this.userForm.valid) {
+      this.userService.addUser(this.userForm.value);
+      this.router.navigate(['/']);
+      console.log("New user has been added!");
+    }
   }
 }

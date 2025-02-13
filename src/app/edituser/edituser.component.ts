@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user.model';
-import { UserService } from '../services/user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-edituser',
@@ -9,22 +10,31 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edituser.component.css']
 })
 export class EdituserComponent implements OnInit {
-  user: User | undefined;
+  userForm!: FormGroup;
+  userId!: number;
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    const userId = Number(this.route.snapshot.paramMap.get('id'));
-    this.user = this.userService.getUserById(userId);
+    this.userId = Number(this.route.snapshot.paramMap.get('id'));
+    const user = this.userService.getUserById(this.userId);
+
+    this.userForm = new FormGroup({
+      name: new FormControl(user?.name, Validators.required),
+      position: new FormControl(user?.position, Validators.required),
+      city: new FormControl(user?.city, Validators.required),
+      department: new FormControl(user?.department, Validators.required)
+    });
   }
 
   editUser() {
-    if (this.user) {
-      this.userService.updateUser(this.user);
+    if (this.userForm.valid) {
+      const updatedUser: User = { id: this.userId, ...this.userForm.value };
+      this.userService.updateUser(updatedUser);
       this.router.navigate(['/']);
       console.log("User has been edited!");
     }

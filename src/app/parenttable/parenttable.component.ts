@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ParenttableComponent implements OnInit {
   departments: { name: string; users: User[] }[] = [
-    { name: 'Frontend', users: [] as User[] },
-    { name: 'Backend', users: [] as User[] }
+    { name: 'Frontend', users: [] },
+    { name: 'Backend', users: [] }
   ];
 
   selectedUsers: User[] = [];

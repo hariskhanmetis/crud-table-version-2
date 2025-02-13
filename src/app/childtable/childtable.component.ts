@@ -14,14 +14,14 @@ export class ChildtableComponent implements OnChanges, OnDestroy {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log("ChildtableComponent Initialized!");
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['users']) {
       console.log("Users list changed:", changes['users'].currentValue);
     }
+  }
+
+  ngOnInit(): void {
+    console.log("ChildtableComponent Initialized!");
   }
 
   onDelete(id: number) {
